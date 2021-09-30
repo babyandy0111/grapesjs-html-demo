@@ -1,7 +1,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/grapesjs-preset-webpage@0.1.11/dist/grapesjs-preset-webpage.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/grapesjs-preset-webpage@0.1.11/dist/grapesjs-preset-webpage.min.css"
+          rel="stylesheet"/>
     <link href="https://unpkg.com/grapesjs-project-manager/dist/grapesjs-project-manager.min.css" rel="stylesheet">
     <link href="https://unpkg.com/tui-image-editor@3.7.3/dist/tui-image-editor.min.css" rel="stylesheet">
 
@@ -14,6 +15,11 @@
     <script src="https://unpkg.com/grapesjs-tui-image-editor"></script>
     <script src="https://unpkg.com/grapesjs-script-editor"></script>
     <script src="https://unpkg.com/grapesjs-rulers"></script>
+
+    <link href="https://unpkg.com/grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css"
+          rel="stylesheet">
+    <script src="https://unpkg.com/grapesjs-component-code-editor"></script>
+
 </head>
 <body>
 <div id="gjs"></div>
@@ -39,13 +45,14 @@
         height: '100%',
         fromElement: true,
         pageManager: true, // This should be set to true
-        storageManager:  {
+        // storageManager: false,
+        storageManager: {
             type: 'indexeddb',
-            // ...
         },
         container: '#gjs',
-        components: '<div>Hello world!</div>',
+        // components: '<div>Hello world!</div>',
         plugins: [
+            'grapesjs-component-code-editor',
             'grapesjs-rulers',
             'grapesjs-script-editor',
             'gjs-preset-webpage',
@@ -95,6 +102,15 @@
         },
         command: 'open-pages',
         togglable: false
+    });
+
+    pn.addButton('options', {
+        id: 'open-code',
+        className: 'fa fa-code',
+        attributes: {
+            title: 'Open Code'
+        },
+        command: 'open-code',
     });
 
     editor.DomComponents.addType('test-component', {
