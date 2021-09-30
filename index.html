@@ -1,0 +1,144 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/grapesjs-preset-webpage@0.1.11/dist/grapesjs-preset-webpage.min.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/grapesjs-project-manager/dist/grapesjs-project-manager.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tui-image-editor@3.7.3/dist/tui-image-editor.min.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="https://unpkg.com/grapesjs-preset-webpage"></script>
+
+    <script src="https://unpkg.com/grapesjs-project-manager"></script>
+    <script src="https://unpkg.com/grapesjs-custom-code"></script>
+    <script src="https://unpkg.com/grapesjs-parser-postcss"></script>
+    <script src="https://unpkg.com/grapesjs-tui-image-editor"></script>
+</head>
+<body>
+<div id="gjs"></div>
+</body>
+
+
+<script type="text/javascript">
+    function myPlugin1(editor) {
+        editor.BlockManager.add('my-first-block', {
+            label: 'Simple block',
+            content: '<div class="my-block">This is a simple block</div>',
+        });
+    }
+
+    function myPlugin2(editor) {
+        editor.BlockManager.add('test-component', {
+            label: 'Test Component',
+            content: `<div data-gjs-type="test-component">This is a component</div>`,
+        });
+    }
+
+    let editor = grapesjs.init({
+        height: '100%',
+        fromElement: true,
+        pageManager: true, // This should be set to true
+        storageManager:  {
+            type: 'indexeddb',
+            // ...
+        },
+        container: '#gjs',
+        components: '<div>Hello world!</div>',
+        plugins: [
+            'gjs-preset-webpage',
+            'grapesjs-custom-code',
+            'grapesjs-tui-image-editor',
+            'grapesjs-parser-postcss',
+            myPlugin1,
+            myPlugin2,
+            'grapesjs-project-manager'
+        ],
+        pluginsOpts: {
+            'gjs-preset-webpage': {/* ...options */},
+            'grapesjs-custom-code': {/* ...options */},
+            'grapesjs-tui-image-editor': {
+                config: {
+                    includeUI: {
+                        initMenu: 'filter',
+                    },
+                },
+                icons: {
+                    'menu.normalIcon.path': '../icon-d.svg',
+                    'menu.activeIcon.path': '../icon-b.svg',
+                    'menu.disabledIcon.path': '../icon-a.svg',
+                    'menu.hoverIcon.path': '../icon-c.svg',
+                    'submenu.normalIcon.path': '../icon-d.svg',
+                    'submenu.activeIcon.path': '../icon-c.svg',
+                },
+            }
+        }
+    });
+
+    // Running commands from panels
+    const pn = editor.Panels;
+    pn.addButton('options', {
+        id: 'open-templates',
+        className: 'fa fa-folder-o',
+        attributes: {
+            title: 'Open projects and templates'
+        },
+        command: 'open-templates', //Open modal
+    });
+    pn.addButton('views', {
+        id: 'open-pages',
+        className: 'fa fa-file-o',
+        attributes: {
+            title: 'Take Screenshot'
+        },
+        command: 'open-pages',
+        togglable: false
+    });
+
+    editor.DomComponents.addType('test-component', {
+        model: {
+            defaults: {
+                testprop: '12345',
+                url: 'https://jsonplaceholder.typicode.com/posts/1'
+            },
+            init() {
+                console.log('Local hook: model.init', this.attributes.testprop);
+                fetch(this.attributes.url)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.set('testprop', data.title);
+                        console.log('=>', this.attributes.testprop);
+                    });
+                this.listenTo(this, 'change:testprop', this.handlePropChange);
+                // Here we can listen global hooks with editor.on('...')
+            },
+            updated(property, value, prevValue) {
+                console.log('Local hook: model.updated', 'property', property, 'value', value, 'prevValue', prevValue);
+            },
+            removed() {
+                console.log('Local hook: model.removed');
+            },
+            handlePropChange() {
+                let prop = this.get('testprop');
+                // let url = this.get('url');
+                // console.log(url);
+                // Here inside view it is getting the old value. of "testprop" i.e '12345' but not
+                //the new value
+                //which is being fetched from server in the init() of model.
+                let comp1 = '<div>' +
+                    '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" />' +
+                    '<span title="foo">' + prop + '</span>' + '</div>';
+
+                return editor.addComponents(comp1);
+            }
+        },
+        view: {
+            init() {
+                console.log('Local hook: view.init');
+                // this.defaults.testprop = '12345'
+                // this.defaults.url = 'https://jsonplaceholder.typicode.com/posts/1'
+                alert(123);
+            },
+
+        },
+    });
+</script>
+</html>
