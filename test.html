@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/grapesjs-custom-code"></script>
     <script src="https://unpkg.com/grapesjs-parser-postcss"></script>
     <script src="https://unpkg.com/grapesjs-tui-image-editor"></script>
+    <script src="https://unpkg.com/grapesjs-script-editor"></script>
 </head>
 <body>
 <div id="gjs"></div>
@@ -44,6 +45,7 @@
         container: '#gjs',
         components: '<div>Hello world!</div>',
         plugins: [
+            'grapesjs-script-editor',
             'gjs-preset-webpage',
             'grapesjs-custom-code',
             'grapesjs-tui-image-editor',
