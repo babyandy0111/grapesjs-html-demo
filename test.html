@@ -27,20 +27,7 @@
 
 
 <script type="text/javascript">
-    function myPlugin1(editor) {
-        editor.BlockManager.add('my-first-block', {
-            label: 'Simple block',
-            content: '<div class="my-block">This is a simple block</div>',
-        });
-    }
-
-    function myPlugin2(editor) {
-        editor.BlockManager.add('test-component', {
-            label: 'Test Component',
-            content: `<div data-gjs-type="test-component">This is a component</div>`,
-        });
-    }
-
+    // icon https://www.baltimorecity.gov/fontawesome-icon-options
     let editor = grapesjs.init({
         height: '100%',
         fromElement: true,
@@ -50,13 +37,14 @@
         //     type: 'indexeddb',
         // },
         storageManager: {
-            type: 'remote',
+            type: 'rest-api',
             stepsBeforeSave: 1,
-            autosave: true,         // Store data automatically
-            autoload: true,
+            autosave: 1,         // Store data automatically
+            autoload: 1,
             urlStore: 'store.php',
             urlLoad: 'load.php',
-            params: {page_id: 11111},
+            urlDelete: 'delete.php',
+            params: {id: 11111},
             contentTypeJson: true,
             storeComponents: true,
             storeStyles: true,
@@ -120,14 +108,27 @@
         command: 'open-pages',
         togglable: false
     });
-
     pn.addButton('options', {
         id: 'open-code',
-        className: 'fa fa-code',
+        className: 'fa fa-file-text-o',
         attributes: {
             title: 'Open Code'
         },
         command: 'open-code',
+    });
+    pn.addButton('options', [{
+        id: 'load-css',
+        className: 'fa fa-paperclip',
+        command: 'load-css',
+        attributes: {title: 'Load CSS'}
+    }]);
+
+    editor.Commands.add('load-css', {
+        run: function (editor, sender) {
+            sender && sender.set('active'); // turn off the button
+            // editor.getComponents().add('<link rel="stylesheet" href="">');
+            openModal()
+        }
     });
 
     editor.DomComponents.addType('test-component', {
@@ -172,10 +173,61 @@
                 console.log('Local hook: view.init');
                 // this.defaults.testprop = '12345'
                 // this.defaults.url = 'https://jsonplaceholder.typicode.com/posts/1'
-                alert(123);
+                // alert(123);
             },
 
         },
     });
+
+    function myPlugin1(editor) {
+        editor.BlockManager.add('my-first-block', {
+            label: 'Simple block',
+            content: '<div class="my-block">This is a simple block</div>',
+        });
+    }
+
+    function myPlugin2(editor) {
+        editor.BlockManager.add('test-component', {
+            label: 'Test Component',
+            content: `<div data-gjs-type="test-component">This is a component</div>`,
+        });
+    }
+
+    function openModal() {
+        const pfx = editor.getConfig().stylePrefix;
+        const modal = editor.Modal;
+
+        const container = document.createElement('div');
+
+        const inputHtml = `
+                            <div class="form-group">
+                                <label>CSS URL</label>
+                                <input type="text" class="form-control" placeholder="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" name="url" id="urlInput">
+                            </div>
+                            <br>
+                           `;
+
+        const btnEdit = document.createElement('button');
+        btnEdit.innerHTML = 'Add';
+        btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import';
+        btnEdit.onclick = function () {
+            const urlInputElement = document.getElementById('urlInput');
+            // const idInputElement = document.getElementById('idInput');
+
+            const urlVal = urlInputElement.value;
+            // const idVal = idInputElement.value;
+
+            // here is where you put your ajax logic
+            // myAjaxCallFunction(urlVal, idVal);
+            editor.getComponents().add('<link rel="stylesheet" href="' + urlVal + '">');
+            modal.close();
+        };
+
+        modal.setTitle('Load CSS from URL');
+        container.innerHTML = inputHtml;
+        container.appendChild(btnEdit);
+        modal.setContent(container);
+        modal.open();
+    };
 </script>
 </html>

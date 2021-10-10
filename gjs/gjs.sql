@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `pages` (
+CREATE TABLE IF NOT EXISTS `grapes_template` (
     `id` int(20) NOT NULL AUTO_INCREMENT,
     `assets` TEXT NOT NULL DEFAULT '[]',
     `components` TEXT NOT NULL DEFAULT '[]',
