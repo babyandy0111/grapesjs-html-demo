@@ -5,6 +5,7 @@ import "grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css";
 import "grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css";
 import "tui-image-editor/dist/tui-image-editor.min.css";
 import "grapesjs-project-manager/dist/grapesjs-project-manager.min.css";
+import "./styles/main.scss";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

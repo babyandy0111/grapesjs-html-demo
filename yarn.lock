@@ -5757,6 +5757,11 @@ grapesjs-blocks-basic@^0.1.7:
   resolved "https://registry.yarnpkg.com/grapesjs-blocks-basic/-/grapesjs-blocks-basic-0.1.8.tgz#9eab7c8fd7bc30537143677320b07d85b9bd2e8f"
   integrity sha512-Iy5M4qGkEE2llb5ZFxitDolRJ3CrQkcK1SQIjRRlkWIAC99On3T/09iFR7NkpTBfsgfdNwcwnSVOMOhSnVLDtw==
 
+grapesjs-blocks-flexbox@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/grapesjs-blocks-flexbox/-/grapesjs-blocks-flexbox-0.1.1.tgz#d973abe40319bfbdfcab5351a335ac3494f52772"
+  integrity sha512-TteRG7r14+j03kagaN/75l6r04Qd3YRBKCB8x1SZC4eH8L3BW29xXef9Svk7SD2j6/DPsketC2131xgpDv5dsQ==
+
 grapesjs-component-code-editor@^1.0.17:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/grapesjs-component-code-editor/-/grapesjs-component-code-editor-1.0.17.tgz#62398866806c5d1f41b9094c79330436aed8df0a"
@@ -5773,6 +5778,11 @@ grapesjs-custom-code@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/grapesjs-custom-code/-/grapesjs-custom-code-0.1.3.tgz#b482b42fcb058f2856caab9997b0634c9e3fe6db"
   integrity sha512-K/DF6JysaO6gY5rxaIEYrBy1z4DOlfC8gGQq2vodaXv4iFHLq+S9YEXAct8VhYdKMlqm1CrMsFx83Tuz8AyWfQ==
+
+grapesjs-lory-slider@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/grapesjs-lory-slider/-/grapesjs-lory-slider-0.1.5.tgz#9dbd42a0d2b10b8d848b9d74275c74e807853549"
+  integrity sha512-l5GYJtptAJXt5y3hOO9Boj1q+t1hOtSb3ODc0n0v8KycLE54tjh1XFrohmoj44wI36AyjH9W14tKx7iT5L7wDg==
 
 grapesjs-navbar@^0.1.5:
   version "0.1.5"
@@ -5804,6 +5814,11 @@ grapesjs-plugin-forms@^0.3.5:
   resolved "https://registry.yarnpkg.com/grapesjs-plugin-forms/-/grapesjs-plugin-forms-0.3.6.tgz#c55ee38ad74e2935e1e279deb0bca45ec0b1d301"
   integrity sha512-JGIxky3if7FLlXBDuX2T2UoWQnvm55PcNp5P2qoX64zlA0+2npz9zbPcj9g1PUHXVPlTXwTr2qu5x3U/pb+xdw==
 
+grapesjs-plugin-social@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/grapesjs-plugin-social/-/grapesjs-plugin-social-0.0.11.tgz#caac2cd3fa85c52cecf7592a1f770fe124df428d"
+  integrity sha512-GJL1Fwl6ER91+KpexkxsCVcYuCTAATzFlhJZcLfdAtfxuM2x3N5CUyzsw3vxLIOYfYHefv3nf2QC6beTKY/dYw==
+
 grapesjs-preset-webpage@^0.1.11:
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/grapesjs-preset-webpage/-/grapesjs-preset-webpage-0.1.11.tgz#98dc9c0019683119b7bbb6d4f3b404aee286af6f"
@@ -5834,10 +5849,27 @@ grapesjs-script-editor@^1.0.3:
   resolved "https://registry.yarnpkg.com/grapesjs-script-editor/-/grapesjs-script-editor-1.0.3.tgz#276a24ba6f34a31c16f8012fb25ad46850bc5650"
   integrity sha512-CL4BGKIavCqAoFINqo8sYvht2A1Y10henA2w8tnyqqadigHPNm73684AqxF9gEgfK+4vS+2MqzoMwHmQHvmYdg==
 
+grapesjs-style-gradient@^2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/grapesjs-style-gradient/-/grapesjs-style-gradient-2.0.14.tgz#ece4e40eacd409027b30a0df8eaa004569e6ca03"
+  integrity sha512-YLRKpRp0yv5uyPLheUWCedCHdbMzinRzrTFK5+QBGBzKzYxpBQjzX/N2+eEHIzny7UhILq/CxADLPBOdn+KuHw==
+  dependencies:
+    grapick "^0.1.13"
+
+grapesjs-tabs@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/grapesjs-tabs/-/grapesjs-tabs-1.0.6.tgz#d45377935c04e043325a65ddc695b0cd8fd0b9b6"
+  integrity sha512-Xmdte7jMvmGDHIL29t8jlGWL/oSmXOEgswmlKSaYKc7z4ZJEfF0Vr+YTfF6MZq/FFYjzk+0kOad6dnS3TDgZ5Q==
+
 grapesjs-tui-image-editor@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/grapesjs-tui-image-editor/-/grapesjs-tui-image-editor-0.1.3.tgz#74b00e72e6841e32df11194c0188e714d8c5cabc"
   integrity sha512-aArjsclfNu4HFk0GfCKihwVfHPcs0qsumTJbVvFOnyuBOmxUvJUY3qE+93N8xtegBx12z6Iz3w4LuMqrwV66dQ==
+
+grapesjs-typed@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/grapesjs-typed/-/grapesjs-typed-1.0.5.tgz#badc6a625155e6369b0a2c997536c0e72ac95132"
+  integrity sha512-mZrBAFtOqnK2Nq9Odj6AnDTgyN8tFpbS6G4V/JSRB6TXQx+p+ATF/u0QiA6Ej8riTWDldfZYwOLs8kjfU5cFUA==
 
 grapesjs@^0.17.27:
   version "0.17.27"
@@ -5852,6 +5884,11 @@ grapesjs@^0.17.27:
     promise-polyfill "^8.1.3"
     spectrum-colorpicker "^1.8.0"
     underscore "^1.13.1"
+
+grapick@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/grapick/-/grapick-0.1.13.tgz#075813a5a79003ce6523df39718e5ec618651599"
+  integrity sha512-2v7DdmXKbl9+GsL2ZRl2qEMD+PeczYJBSifwx+5SGbaSh0pZ+b6GLya87cBfN953wwXsZqyzuSVPBzqRz8F12g==
 
 growly@^1.3.0:
   version "1.3.0"

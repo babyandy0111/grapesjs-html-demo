@@ -3,20 +3,25 @@ import grapesjs from 'grapesjs';
 import gjsPresetWebpage from 'grapesjs-preset-webpage';
 import gjsImageEditor from 'grapesjs-tui-image-editor';
 import gjsPM from 'grapesjs-project-manager';
-import iconD from './assets/icon-d.svg';
-import iconB from './assets/icon-b.svg';
-import iconA from './assets/icon-a.svg';
-import iconC from './assets/icon-c.svg';
-import "./styles/main.scss";
 import gjsCC from 'grapesjs-custom-code';
 import gjsCCE from 'grapesjs-component-code-editor';
 import gjsRulers from 'grapesjs-rulers';
 import gjsSE from 'grapesjs-script-editor';
 import gjsPP from 'grapesjs-parser-postcss';
+import gjsSG from 'grapesjs-style-gradient';
+import gjsBF from 'grapesjs-blocks-flexbox';
+import gjsTabs from 'grapesjs-tabs';
+import gjsSlider from 'grapesjs-lory-slider';
+import gjsTyped from 'grapesjs-typed';
+import gjsSocial from 'grapesjs-plugin-social';
+import iconA from 'tui-image-editor/dist/svg/icon-a.svg';
+import iconB from 'tui-image-editor/dist/svg/icon-b.svg';
+import iconC from 'tui-image-editor/dist/svg/icon-c.svg';
+import iconD from 'tui-image-editor/dist/svg/icon-d.svg';
 
 function App() {
     const [editor, setEditor] = useState(null);
-
+    console.log(editor);
     useEffect(() => {
         const editor = grapesjs.init({
             container: "#editor",
@@ -24,6 +29,14 @@ function App() {
             pageManager: true,
             storageManager: {
                 type: 'indexeddb',
+                stepsBeforeSave: true,
+                autosave: true,         // Store data automatically
+                autoload: true,
+                contentTypeJson: true,
+                storeComponents: true,
+                storeStyles: true,
+                storeHtml: true,
+                storeCss: true,
             },
             plugins: [
                 gjsPresetWebpage,
@@ -34,17 +47,17 @@ function App() {
                 gjsRulers,
                 gjsSE,
                 gjsPP,
+                gjsSG,
+                gjsBF,
+                gjsTabs,
+                gjsSlider,
+                gjsTyped,
+                gjsSocial,
                 myPlugin1,
                 myPlugin2
             ],
             pluginsOpts: {
-                gjsCCE: {},
-                gjsRulers: {},
-                gjsSE: {},
-                gjsPP: {},
-                gjsCC: {},
-                gjsPresetWebpage: {},
-                gjsImageEditor: {
+                [gjsImageEditor]: {
                     config: {
                         includeUI: {
                             initMenu: 'filter',
@@ -59,7 +72,6 @@ function App() {
                         'submenu.activeIcon.path': iconC,
                     },
                 },
-                gjsPM: {},
             },
         });
 
@@ -78,7 +90,7 @@ function App() {
                 title: 'Take Screenshot'
             },
             command: 'open-pages',
-            togglable: false
+            togglable: true
         });
         editor.Panels.addButton('options', {
             id: 'open-code',
@@ -135,7 +147,7 @@ function App() {
                     //which is being fetched from server in the init() of model.
                     let comp1 = '<div>' +
                         '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" />' +
-                        '<span title="foo">' + prop + '</span>' + '</div>';
+                        '<span title="foo">' + prop + '</span></div>';
 
                     return editor.addComponents(comp1);
                 }
@@ -203,11 +215,11 @@ function App() {
         container.appendChild(btnEdit);
         modal.setContent(container);
         modal.open();
-    };
+    }
 
     return (
         <div className="App">
-            <div id="editor"></div>
+            <div id="editor"/>
         </div>
     );
 }
