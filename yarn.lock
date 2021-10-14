@@ -5856,6 +5856,11 @@ grapesjs-style-gradient@^2.0.14:
   dependencies:
     grapick "^0.1.13"
 
+grapesjs-table@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/grapesjs-table/-/grapesjs-table-1.0.8.tgz#fd11c2e1422f34689fb5276900dd3bf4f479cceb"
+  integrity sha512-rFu4QatL2173bl60MnzhLEGNIfETGcvc+J1GF7CEH0AqHkNvrWcoKi67Bi5aXNSMlwHsHEDjFo/OfffXkVpzlQ==
+
 grapesjs-tabs@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/grapesjs-tabs/-/grapesjs-tabs-1.0.6.tgz#d45377935c04e043325a65ddc695b0cd8fd0b9b6"

@@ -14,6 +14,7 @@ import gjsTabs from 'grapesjs-tabs';
 import gjsSlider from 'grapesjs-lory-slider';
 import gjsTyped from 'grapesjs-typed';
 import gjsSocial from 'grapesjs-plugin-social';
+import gjsTable from 'grapesjs-table';
 import iconA from 'tui-image-editor/dist/svg/icon-a.svg';
 import iconB from 'tui-image-editor/dist/svg/icon-b.svg';
 import iconC from 'tui-image-editor/dist/svg/icon-c.svg';
@@ -32,7 +33,6 @@ function App() {
                 stepsBeforeSave: true,
                 autosave: true,         // Store data automatically
                 autoload: true,
-                contentTypeJson: true,
                 storeComponents: true,
                 storeStyles: true,
                 storeHtml: true,
@@ -53,6 +53,7 @@ function App() {
                 gjsSlider,
                 gjsTyped,
                 gjsSocial,
+                gjsTable,
                 myPlugin1,
                 myPlugin2
             ],
